@@ -1,0 +1,287 @@
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+    table {
+        width: 100%;
+        border-spacing: 3px;
+        float: center;
+    }
+    td {
+        text-align: center;
+        padding: 5px;
+    }
+    th {
+        text-align: center;
+        padding: 5px;
+        font-weight: bold;
+    }
+    span {
+        color: кув;
+    }
+</style>
+<script>
+function birthd(text,date) {
+    this.text=text;
+    this.date=date;
+    this.time = function() {
+        return this.date.toLocaleTimeString();
+    }
+    this.day = function() {
+        return this.date.toLocaleDateString();
+    }
+}
+
+function time(date) {
+    return "" + date.toLocaleTimeString();
+}
+
+function day(date) {
+    return "" + date.toLocaleDateString();
+}
+
+var sernames=["Фамилия","Русских","Иванов","Ферстапен"];
+var names=["Имя","Артем","Вика","Катя"];
+var mail=["E-mail","aaa@mail.ru","alfaaa@gmail.com","betaaa@gmail.com"];
+var phone=["Телефон","8-123-456-78-90","8-456-789-00-01","8-383-333-00-54"];
+var birthday=[
+    new birthd("День рождения",
+        new Date (2015, 11, 11)),         
+    new birthd("30.01.2001",
+        new Date (2014, 01, 28)),
+    new birthd("24.05.1999",
+        new Date (1997, 05, 24)),
+    new birthd("13.11.2005",
+        new Date (2125, 10, 13)),
+];
+
+function displayRecords () {
+    var text = "";
+    var odd = true;
+    var l = sernames.length;
+    for (var i=0; i<l; i++) {
+        odd ? text += "<tr><td style='background-color: lightgray'>"+ sernames[i] +"</td>" : text += "<tr><td style='background-color: gray'>"+ sernames[i] +"</td>";
+        odd ? text += "<td style='background-color: lightgray'>"+ names[i] +"</td>" : text += "<td style='background-color: gray'>"+ names[i] +"</td>";
+        odd ? text += "<td style='background-color: lightgray'>"+ birthday[i].text +"</td>" : text += "<td style='background-color: gray'>"+ birthday[i].text +"</td>";
+        odd ? text += "<td style='background-color: lightgray'>"+ mail[i] +"</td>" : text += "<td style='background-color: gray'>"+ mail[i] +"</td>";
+        odd ? text += "<td style='background-color: lightgray'>"+ phone[i] +"</td></tr>" : text += "<td style='background-color: gray'>"+ phone[i] +"</td></tr>";
+        odd = !odd;
+    }
+    document.getElementById("records_place").innerHTML = text;
+   
+}
+
+function send() {
+    var s = document.getElementById("surename").value;
+    sernames.push(s);
+    var n = document.getElementById("firstname").value;
+    names.push(n);
+    
+        var dt = document.getElementById("birthdate").value;
+        var ye = dt[6]+dt[7]+dt[8]+dt[9];
+        var mo = dt[3]+dt[4] - 1;
+        var da = dt[0]+dt[1];
+
+    var b = new birthd(
+        document.getElementById("birthdate").value,        
+            new Date(ye,mo,da));
+    birthday.push(b);
+    console.log(birthday[4].day());
+    var m = document.getElementById("email").value;
+    mail.push(m);
+    var p = document.getElementById("phone").value;
+    phone.push(p);
+    displayRecords();
+}
+
+function sort(compare) {
+    var l=sernames.length;
+
+    for (var i=1; i<l-1; i++) {
+        var j_min = i;
+        for (var j=i+1; j<l; j++) {
+            if (compare(birthday[j],birthday[j_min])) {
+                j_min=j;
+            }
+        }
+        var s=sernames[j_min];
+        var n=names[j_min];
+        var b=birthday[j_min];
+        var m=mail[j_min];
+        var p=phone[j_min];
+       
+        sernames[j_min] = sernames[i];
+        names[j_min] = names[i];
+        birthday[j_min] = birthday[i];
+        mail[j_min] = mail[i];
+        phone[j_min] = phone[i];
+       
+        sernames[i] = s;
+        names[i] = n;
+        birthday[i] = b;
+        mail[i] = m;
+        phone[i] = p;
+    }
+    displayRecords();
+}
+
+var comparers = [
+    function comp1(r1,r2) {
+        return r1.date > r2.date;
+    },
+
+    function comp2(r1,r2) {
+        return r1.date < r2.date;
+    },
+
+    function comp3(r1,r2) {
+        return r1.text > r2.text;
+    },
+
+    function comp4(r1,r2) {
+        return r1.text < r2.text;
+    },
+]
+
+function findAll() {
+    var s = sernames.length;
+    
+    var ts = document.getElementById("surename").value
+    var tn = document.getElementById("firstname").value
+    var tb = document.getElementById("birthdate").value
+    var tm = document.getElementById("email").value
+    var tp = document.getElementById("phone").value
+
+    
+    for (var i=0; i<s ; i++ ){
+    if (ts==sernames[i] && tn==names[i] && tb==birthday[i] && tm==mail[i] && tp==phone[i]) { 
+        alert (sernames[i]+" "+names[i]+" "+birthday[i]+" "+mail[i]+" "+phone[i]);        
+    }};
+}
+
+function isEmpty(field) {
+   return field.value.length==0;
+}
+
+function isLonger20(field) {
+return field.value.length>20;
+}
+
+function containsDigits(field) {
+var digits = "0123456789";
+for (var i=0; i<digits.length; i++) {
+     if (field.value.indexOf(digits[i])!=-1) {
+         return true;
+     }
+} return false;
+}
+
+function checkName(field) {
+    label=document.getElementById(field.id + "mes");
+    if (isEmpty(field)) {
+        label.innerHTML="Поле не заполнено!";
+    } else if (isLonger20(field)) {
+        label.innerHTML="Введено более 20 символов!";
+    } else if (containsDigits(field)) {
+        label.innerHTML="Введены цифры!";
+    } else {
+        label.innerHTML="";
+    }
+}
+
+function checkEmail (field) {
+    label=document.getElementById(field.id+"mes");
+    if (isEmpty(field)) {
+        label.innerHTML="Поле не заполнено!";
+    } else if (!isCorrectEmail(field)) {
+        label.innerHTML="Некорректно введен емаил!";
+    } else {
+        label.innerHTML="";
+    }
+}
+
+function isCorrectEmail(field) {
+    var emailRegex=/^\w+@\w+\.\w{2,4}$/;
+    return emailRegex.test(field.value);
+}
+
+function checkPhone (field) {
+    label=document.getElementById(field.id+"mes");
+    if (isEmpty(field)) {
+        label.innerHTML="Полне не заполнено!";
+    } else if (!isCorrectPhone(field)) {
+        label.innerHTML="Некорректно введен номер!";
+    } else {
+        label.innerHTML="";
+    }
+}
+
+function isCorrectPhone(field) {
+    var phoneRegex=/^8-\d{3}-\d{3}-\d{2}-\d{2}$/;
+    return phoneRegex.test(field.value);
+}
+
+function checkBirthdate(field) {
+label=document.getElementById(field.id+"mes");
+if (isEmpty(field)) {
+    label.innerHTML="Поле не заполнено!";
+} else if (!isCorrectDate(field)) {
+    label.innerHTML="Некорректно введена дата!";
+} else if (!isCorrectDateValues(field)) {
+    label.innerHTML="Некореектные значения даты!";
+} else {
+    label.innerHTML="";
+}
+}
+
+function isCorrectDateValues(field) {
+    var dd=parseInt(field.value.substring(0,2));
+    var mm=parseInt(field.value.substring(3,5));
+    return 1<=dd && dd<=31 && 1<=mm && mm<=12;
+}
+
+function isCorrectDate(field) {
+    var dataRegex=/^\d{2}(\/|\.)\d{2}(\/|\.)\d{4}$/;
+    return dataRegex.test(field.value);
+}
+
+
+</script>
+
+</head>
+<body onload="displayRecords()">
+<div>
+
+<form>
+    <p>Фамилия:<input type="text" id="surename" onkeyup="checkName(this)" onblur="checkName(this)"/>
+        <span id="surenamemes"></span></p>
+
+    <p>Имя:<input type="text" id="firstname" onkeyup="checkName(this)" onblur="checkName(this)"/>
+    <span id="firstnamemes"></span></p>
+
+    <p>Дата рождения<input type="text" id="birthdate" onkeyup="checkBirthdate(this)" onblur="checkBirthdate(this)"/>
+        <span id="birthdatemes"></span></p>
+
+    <p>E-mail:<input type="text" id="email" onkeyup="checkEmail(this)" onblur="checkEmail(this)"/>
+        <span id="emailmes"></span></p>
+
+    <p>Телефон<input type="text" id="phone" onkeyup="checkPhone(this)" onblur="checkPhone(this)"/>
+        <span id="phonemes"></span></p>
+  </form>
+
+</div>
+
+<div id="toolbar">
+<input type="button" value="Добавить запись" onclick="send()"/>
+<input type="button" value="Найти" onclick="findAll()"/>
+<input type="button" value="По дате ^" onclick="sort(comparers[0])"/>
+<input type="button" value="По дате v" onclick="sort(comparers[1])"/>
+<input type="button" value="По алфавиту ^" onclick="sort(comparers[2])"/>
+<input type="button" value="По алфавиту v" onclick="sort(comparers[3])"/>
+</div>
+
+<div>
+<table id="records_place">
+</table></div>
+    </body>
+</html>
