@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>X and Y</title>
+		<script src="js/script.js"></script>
+		<script type="text/javascript">
+		function twinsCheck(x,y){
+	if (x != '' && y != ''){
+		var trigger1 = true, trigger2 = true;
+		for(var i = 2; i < x/2; i++){
+			if (x % i == 0){
+				trigger1 = false;
+				break;
+			}
+		}
+		for(var i = 2; i < y/2; i++){
+			if (y % i == 0){
+				trigger2 = false;
+				break;
+			}
+		}
+		if (Math.abs(x-y) == 2 && trigger2 && trigger1)
+			return("Числа близнецы.");
+		else
+			return("Числа не близнецы.");
+	}
+	else
+		return "Некорректные данные";
+}
+			function calculate(){
+				var x = document.getElementById("inputX").value;
+				var y = document.getElementById("inputY").value;
+
+				alert(twinsCheck(x,y));
+			}
+		</script>
+	</head>
+	<body>
+		<form name="form1">
+			<p><!-- Поле Х -->
+				<label for="inputX">X = </label>
+				<input type="text" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" maxlength="10" size="15" id="inputX">
+			</p>
+			<p><!-- Поле Y -->
+				<label for="inputY">Y = </label>
+				<input type="text" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" maxlength="10" size="15" id="inputY">
+			</p>
+			<p><button type="button" onclick="calculate()">Проверить</button></p>
+		</form>
+	</body>
+</html>
