@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>X and Y</title>
+		<script src="js/script.js"></script>
+		<script type="text/javascript">
+			function calculate(){
+				var task = document.form1.task.options[document.form1.task.selectedIndex].value;
+				var x = document.getElementById("inputX").value;
+				var y = document.getElementById("inputY").value;
+
+				var result;
+				switch (task){
+					case "1":
+						result = String(func1(x,y));
+						break;
+					case "2":
+						result = String(func2(x,y));
+						break;
+					case "3":
+						result = String(func3(x,y));
+						break;
+					case "4":
+						result = String(func4(x,y));
+						break;
+				}
+
+				alert(result);
+			}
+			
+			function func1(x,y){
+	if (x != '' && y != ''){
+		if (x > y){
+			c = x; x = y; y = c;
+		}
+		for (var i = x; i > 0; i--) {
+			if (y % i == 0)
+				return (i);
+		}
+	}
+	else
+		return "Некорректные данные";
+}
+function func2(x,y){
+	if (x != '' && y != ''){
+		var c;
+		if (x > y){
+			c = x; x = y; y = c;
+		}
+		for (var i = y; i < y * 100; i++) {
+			if (i % y == 0 && i % x == 0){
+				return (i);
+			}
+		}
+	}
+	else
+		return "Некорректные данные";
+}
+function func3(x,y){
+	if (x != '' && y != ''){
+		if (x > y)
+			return "X больше";
+		else if (y > x)
+			return "Y больше";
+		else if (x == y) 
+			return "Числа равны";
+	}
+	else
+		return "Некорректные данные";
+}
+function func4(x,y){
+	if (x != '' && y != ''){
+		if (x < y)
+			return "X меньше";
+		else if (y < x)
+			return "Y меньше";
+		else if (x == y) 
+			return "Числа равны";
+	}
+	else
+		return "Некорректные данные";
+}
+			
+		</script>
+	</head>
+	<body>
+		<form name="form1">
+			<p><!-- Поле Х -->
+				<label for="inputX">X = </label>
+				<input type="text" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" maxlength="10" size="15" id="inputX">
+			</p>
+			<p><!-- Поле Y -->
+				<label for="inputY">Y = </label>
+				<input type="text" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" maxlength="10" size="15" id="inputY">
+			</p>
+			<p><b>Выберите функцию</b></p>
+			<select name="task">
+    			<p><option value="1">Наибольший общий делитель</option></p>
+    			<p><option value="2" >Наименьшее общее кратное</option></p>
+    			<p><option value="3">Максимум из двух чисел</option></p>
+    			<p><option value="4" selected> Минимум из двух чисел</option></p>
+			</select>
+			<p><button type="button" onclick="calculate()">Рассчитать</button></p>
+		</form>
+	</body>
+</html>
