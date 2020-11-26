@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+         var canvas;
+         var ctx;
+         var color = "lightblue";
+         document.getElementById("color").value = "color:"+ color;
+        
+         function init(){
+           canvas = document.getElementById('canvas');
+           ctx = canvas.getContext('2d');
+           document.addEventListener("mousedown",putRect)
+           ctx.strokeStyle = 'black';
+           ctx.strokeRect(0,0,640,480);
+          
+           document.addEventListener("keydown",change);
+        
+         }
+
+         function change(){
+       
+           if(event.keyCode == 97 || event.keyCode == 49) { color = "lightblue";}
+           if(event.keyCode == 98 || event.keyCode == 50) { color = "pink";}
+           if(event.keyCode == 99 || event.keyCode == 51) { color = "lightgreen";}
+           document.getElementById("color").value = "color:"+ color;
+         }
+
+         function putRect(){
+          var x = event.offsetX;
+          var y = event.offsetY;
+           document.getElementById("x").value = "x=" + x;
+           document.getElementById("y").value = "y=" + y;
+           
+           ctx.strokeStyle = 'black';
+           ctx.strokeRect(0,0,640,480);
+           ctx.fillStyle = color; 
+           ctx.fillRect(x,y,20,20);
+          
+         }
+
+        </script>
+    </head> 
+    <body onload="init()">
+      <input type="text" id="x"></input>
+      <input type="text" id="y"></input>
+      <input type="text" id="color"></input>
+      <br>
+      <canvas id="canvas" width="640" height="480"></canvas>
+    </body>
+</html> 
