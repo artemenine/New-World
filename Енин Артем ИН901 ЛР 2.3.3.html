@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <script src="jquery-3.5.1.js"></script>
+        <script>
+        
+         function hideText(n) {
+             if (n<3){
+                 $("#txt"+n).slideUp(
+                     1000, function(){ hideText(n+1);}
+                 );
+             }else{
+                $("#txt"+n).slideUp(
+                     1000, function(){ alert("Все абзацы скрыты");} 
+                );
+             }
+         }
+         $(document).ready(function(){
+             $("#btn1").click(function(){hideText(1)});
+         });
+        </script>
+    </head> 
+    <body>
+        <input type="button" id="btn1" value="Скрыть текст"/><br>
+        <div id="txt1">
+			Снег беспалым летит февралём,
+			Волшебством оглушая...
+			В снежной сказке земли окоём,
+			Вдруг приходит салютом,
+			Скинув сонные путы,
+			Покоряя версту за верстой…
+		</div>
+        <div id="txt2">
+			Белой пылью играя,
+			Снов следы заметает…
+			С неба луч – на поля – золотой
+		</div>
+        <div id="txt3">
+			Вдруг приходит салютом,
+			Скинув сонные путы,
+			Покоряя версту за верстой…
+        </div>
+    </body>
+</html> 
