@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <script src="jquery-3.5.1.js"></script>
+        <script>
+         $(document).ready(function(){
+             $("#btn1").click(function(){
+                 if($("#f").is(':checked')){
+                 $(".europe").fadeToggle();}
+                else if($("#s").is(':checked')){
+                 $(".europe").slideToggle();}
+             });
+             $("#btn2").click(function(){
+                if($("#f").is(':checked')){
+                 $(".asia").fadeToggle();}
+                else if($("#s").is(':checked')){
+                 $(".asia").slideToggle();}
+             });
+             $("#btn3").click(function(){
+                if($("#f").is(':checked')){
+                 $(".america").fadeToggle();}
+                else if($("#s").is(':checked')){
+                 $(".america").slideToggle();}
+             });
+             $("#btn4").click(function(){
+                if($("#f").is(':checked')){
+                 $(".africa").fadeToggle();}
+                else if($("#s").is(':checked')){
+                 $(".africa").slideToggle();}
+             });
+         });
+        </script>
+    </head> 
+    <body>
+        <input type="radio" name="change" value="f" id="f">Fade<br>
+        <input type="radio" name="change" value="s" id="s">Slide<br>
+        <input type="button" id="btn1" value="Показать (Скрыть) страны Европы"/><br>
+        <input type="button" id="btn2" value="Показать (Скрыть) страны Азии"/><br>
+        <input type="button" id="btn3" value="Показать (Скрыть) страны Америки"/><br>
+        <input type="button" id="btn4" value="Показать (Скрыть) страны Африки"/><br>
+        <p class="europe">Австрия</p>
+		<p class="europe">Бельгия</p>
+        <p class="america">Аргентина</p>
+		<p class="europe">Швейцария</p>
+        <p class="africa">Ангола</p>
+        <p class="asia">Бангладеш</p>
+        <p class="america">Боливия</p>
+        <p class="europe">Чехия</p>
+        <p class="africa">Нигерия</p>
+        <p class="america">Бразилия</p>
+        <p class="europe">Великобритания</p>
+		<p class="asia">Таиланд</p>
+        <p class="europe">Венгрия</p>
+        <p class="america">Венесуэла</p>
+		<p class="europe">Ирландия</p>
+        <p class="asia">Вьетнам</p>
+		<p class="america">Канада</p>
+        <p class="asia">Грузия</p>
+		<p class="europe">Швеция</p>
+        <p class="europe">Дания</p>
+		<p class="america">Соединенные Штаты Америки</p>
+        <p class="africa">Гвинея</p>
+        <p class="america">Доминикана</p>
+        <p class="africa">Египет</p>
+        <p class="africa">Зимбабве</p>
+        <p class="asia">Израиль</p>
+        <p class="asia">Индия</p>
+        <p class="asia">Индонезия</p>
+        <p class="europe">Италия</p>
+		<p class="america">Бразилия</p>
+		<p class="europe">Испания</p>
+        <p class="asia">Китай</p>
+        <p class="america">Канада</p>
+        <p class="africa">Конго</p>
+		<p class="europe">Нидерланды</p>
+		<p class="asia">Япония</p>
+        <p class="africa">Мадагаскар</p>
+    </body>
+</html> 
