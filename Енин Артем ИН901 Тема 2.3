@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="jquery-3.5.1.js"></script>
+		<script>
+		
+		$(document).ready(function(){
+			$("#btn1").click(function(){
+				$("#txt").slideUp(3000);
+				alert("Текст скрыт");
+			})
+		});
+		</script>
+		
+	</head>
+	
+	<body>
+		<input type="button" id="btn1" value="Скрыть текст"/>
+		<div id="txt">
+			Снег беспалым летит февралём,
+			Волшебством оглушая...
+			В снежной сказке земли окоём,
+			Белой пылью играя,
+			Снов следы заметает…
+			С неба луч – на поля – золотой
+			Вдруг приходит салютом,
+			Скинув сонные путы,
+			Покоряя версту за верстой…
+		</div>
+	
+	</body>
+</html>
