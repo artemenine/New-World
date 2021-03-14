@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <script>
+            var n=2;
+            var timer;
+          function blackBorder(){
+                for(var i=1; i<4; i++){
+                    document.getElementById("img"+i).style.borderColor="black";
+                }
+            }
+            function changeImage(){
+                    if(n<3){
+                        document.getElementById("mainpicture").src="a"+n+".jpg";
+                        blackBorder();
+                        document.getElementById("img"+n).style.borderColor="blue";
+                        n++;}
+                    else{
+                        document.getElementById("mainpicture").src="a"+n+".jpg";
+                        blackBorder();
+                        document.getElementById("img"+n).style.borderColor="blue";
+                        n=1;}
+                }
+            function showImage(m){
+                document.getElementById("mainpicture").src="a"+m+".jpg";
+                blackBorder()
+                document.getElementById("img"+m).style.borderColor="blue";
+                n=m;
+            }
+        </script>
+    </head>
+    <body>
+        <input type="button" onclick="timer=setInterval('changeImage()',1500)" value="Start">
+        <input type="button" onclick="clearInterval(timer)" value="Stop"><br>
+        <img id="mainpicture" border = "3px" onclick="changeImage()" src="a1.jpg" width="440"/><br>
+        <img id="img1" border="3px" onclick="showImage(1)" src="a1.jpg" width="140"/>
+        <img id="img2" border="3px" onclick="showImage(2)" src="a2.jpg" width="140"/>
+        <img id="img3" border="3px" onclick="showImage(3)" src="a3.jpg" width="140"/>
+    </body>
+</html>
