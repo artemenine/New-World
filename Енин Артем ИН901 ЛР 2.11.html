@@ -1,0 +1,47 @@
+<html>
+<head></head>
+<body>
+<script src="sigma.min.js"></script>
+<div id="container">
+  <style>
+    #graph {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      position: absolute;
+    }
+  </style>
+  <div id="graph"></div>
+</div>
+<script>
+var func,
+    bunch = {
+      nodes: [],
+      edges: []
+    };
+
+for (var i = 0; i < 50; i++)
+  bunch.nodes.push({
+    id: 'n' + i,
+    label: 'dot ' + i,
+    x: Math.random(),
+    y: Math.random(),
+    size: Math.random(),
+    color: '#42f5d7'
+  });
+for (var i = 0; i < 100; i++)
+  bunch.edges.push({
+    id: 'e' + i,
+    source: 'n' + (Math.random() * 50 | 0),
+    target: 'n' + (Math.random() * 50 | 0),
+    size: Math.random(),
+    color: '#21ff30'
+  });
+func = new sigma({
+  graph: bunch,
+  container: 'graph'
+});
+</script>
+</body>
+</html>
